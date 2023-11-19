@@ -19,7 +19,6 @@ export class DataService {
     this.loadBooks();
   }
 
-
   private loadAuthors() {
     const localData = localStorage.getItem('authors');
     if (localData) {
@@ -47,17 +46,15 @@ export class DataService {
   addAuthor(author: Author) {
     const currentAuthors = this.authorsSubject.value;
     const updatedAuthors = [...currentAuthors, author];
-
     this.authorsSubject.next(updatedAuthors);
     localStorage.setItem('authors', JSON.stringify(updatedAuthors));
   }
 
-  addBook(author: Book) {
+  addBook(book: Book) {
     const currentBooks = this.booksSubject.value;
-    const updatedBooks = [...currentBooks, author];
-
+    const updatedBooks = [...currentBooks, book];
     this.booksSubject.next(updatedBooks);
-    localStorage.setItem('authors', JSON.stringify(updatedBooks));
+    localStorage.setItem('books', JSON.stringify(updatedBooks));
   }
 
 }
