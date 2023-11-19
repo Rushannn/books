@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="100%">{{ tableTitle }}</th>
+    </tr>
+    <tr class="header-row">
+      <ng-container *ngFor="let header of headers">
+        <th
+          [ngClass]="{ clickable: header.sort !== 'off' }"
+          (click)="header.sort !== 'off' && sort(header.name)"
+        >
+          {{ header.title }}
+          <span [ngSwitch]="header.sort">
+            <span *ngSwitchCase="'off'"></span>
+            <span *ngSwitchCase="'none'">&#8693;</span>
+            <span *ngSwitchCase="'asc'">&#11014;</span>
+            <span *ngSwitchCase="'desc'">&#11015;</span>
+          </span>
+        </th>
+      </ng-container>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td *ngFor="let header of headers">{{ item[header.name] }}</td>
+    </tr>
+  </tbody>
+</table>

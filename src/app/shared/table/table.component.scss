@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.header-row th {
+  height: 50px;
+  white-space: nowrap;
+}
+
+.clickable {
+  cursor: pointer;
+}

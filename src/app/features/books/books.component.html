@@ -1,0 +1,113 @@
+<div class="book-input__wrapper">
+  <div class="book-input">
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <div class="book-input__row">
+        <div class="book-input__form-field">
+          <label>Автор</label>
+
+          <select formControlName="author" id="author" class="form-control">
+            <option value="">Выберите автора</option>
+            <option *ngFor="let author of authors" [value]="author.fullName">
+              {{ author.surname }} {{ author.name }} {{ author.patronymic }}
+            </option>
+          </select>
+          <div
+          *ngIf="
+            bookForm.get('author')?.touched &&
+            bookForm.get('author')?.errors
+          "
+          class="error-message"
+        >
+          <span *ngIf="bookForm.get('author')?.errors?.['required']"
+            >Поле "Автор" обязательно для заполнения</span
+          ></div>
+        </div>
+
+        <div class="book-input__form-field">
+          <label>Название</label>
+          <div class="book-input__control">
+            <input
+              trimInput
+              formControlName="name"
+              placeholder="Название"
+              class="form-control"
+              type="text"
+            />
+            <div
+              *ngIf="
+                bookForm.get('name')?.touched &&
+                bookForm.get('name')?.errors
+              "
+              class="error-message"
+            >
+              <span *ngIf="bookForm.get('name')?.errors?.['required']"
+                >Название обязательно для заполнения</span
+              >
+              <span *ngIf="bookForm.get('name')?.errors?.['minlength']"
+                >Название должно содержать минимум 2 символа</span
+              >
+              <span *ngIf="bookForm.get('name')?.errors?.['maxlength']"
+                >Название не должно превышать 50 символов</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-input__row">
+        <div class="book-input__form-field">
+          <label>Издательство</label>
+          <div class="book-input__form-control">
+            <input
+              trimInput
+              formControlName="publisher"
+              placeholder="Издательство"
+              class="form-control"
+              type="text"
+            />
+            <div
+              *ngIf="
+                bookForm.get('publisher')?.touched &&
+                bookForm.get('publisher')?.errors
+              "
+              class="error-message"
+            >
+              <span *ngIf="bookForm.get('publisher')?.errors?.['required']"
+                >Издательство обязательно для заполнения</span
+              >
+              <span *ngIf="bookForm.get('publisher')?.errors?.['minlength']"
+                >Издательство должно содержать минимум 2 символа</span
+              >
+              <span *ngIf="bookForm.get('publisher')?.errors?.['maxlength']"
+                >Издательство не должно превышать 50 символов</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="book-input__form-field">
+          <label>Год издания</label>
+          <div class="book-input__control">
+            <input
+              formControlName="year"
+              placeholder="ГГГГ"
+              class="form-control"
+              type="text"
+              mask="0000"
+            />
+            <div *ngIf="bookForm.get('year')?.touched && bookForm.get('year')?.errors?.['year']" class="error-message">
+              {{ bookForm.get('year')?.errors?.['year'] }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="book-input__btn button" type="submit">Добавить книгу</button>
+      <span *ngIf="message" class="error-message">{{message}}</span>
+    </form>
+  </div>
+</div>
+
+<app-table
+  [tableTitle]="tableTitle"
+  [headers]="bookHeaders"
+  [items]="(books$ | async) ?? []"
+></app-table>

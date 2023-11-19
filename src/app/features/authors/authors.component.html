@@ -1,0 +1,122 @@
+<div class="author-input__wrapper">
+  <div class="author-input">
+    <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+      <div class="author-input__row">
+        <div class="author-input__form-field">
+          <label>Фамилия</label>
+          <div class="author-input__control">
+            <input
+              trimInput
+              formControlName="surname"
+              placeholder="Фамилия"
+              class="form-control"
+              type="text"
+            />
+            <div
+              *ngIf="
+                authorForm.get('surname')?.touched &&
+                authorForm.get('surname')?.errors
+              "
+              class="error-message"
+            >
+              <span *ngIf="authorForm.get('surname')?.errors?.['required']"
+                >Фамилия обязательна для заполнения</span
+              >
+              <span *ngIf="authorForm.get('surname')?.errors?.['minlength']"
+                >Фамилия должна содержать минимум 2 символа</span
+              >
+              <span *ngIf="authorForm.get('surname')?.errors?.['maxlength']"
+                >Фамилия не должна превышать 50 символов</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="author-input__form-field">
+          <label>Имя</label>
+          <div class="author-input__control">
+            <input
+              trimInput
+              formControlName="name"
+              placeholder="Имя"
+              class="form-control"
+              type="text"
+            />
+            <div
+              *ngIf="
+                authorForm.get('name')?.touched &&
+                authorForm.get('name')?.errors
+              "
+              class="error-message"
+            >
+              <span *ngIf="authorForm.get('name')?.errors?.['required']"
+                >Имя обязательно для заполнения</span
+              >
+              <span *ngIf="authorForm.get('name')?.errors?.['minlength']"
+                >Имя должно содержать минимум 2 символа</span
+              >
+              <span *ngIf="authorForm.get('name')?.errors?.['maxlength']"
+                >Имя не должно превышать 50 символов</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="author-input__row">
+        <div class="author-input__form-field">
+          <label>Отчество</label>
+          <div class="author-input__form-control">
+            <input
+              trimInput
+              formControlName="patronymic"
+              placeholder="Отчество"
+              class="form-control"
+              type="text"
+            />
+            <div
+              *ngIf="
+                authorForm.get('patronymic')?.touched &&
+                authorForm.get('patronymic')?.errors
+              "
+              class="error-message"
+            >
+              <span *ngIf="authorForm.get('patronymic')?.errors?.['required']"
+                >Отчество обязательно для заполнения</span
+              >
+              <span *ngIf="authorForm.get('patronymic')?.errors?.['minlength']"
+                >Отчество должно содержать минимум 2 символа</span
+              >
+              <span *ngIf="authorForm.get('patronymic')?.errors?.['maxlength']"
+                >Отчество не должно превышать 50 символов</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="author-input__form-field">
+          <label>Дата рождения</label>
+          <div class="author-input__control">
+            <input
+              formControlName="birthDate"
+              placeholder="ДД-ММ-ГГГГ"
+              class="form-control"
+              type="text"
+              mask="00-00-0000"
+            />
+            <div *ngIf="authorForm.get('birthDate')?.touched && authorForm.get('birthDate')?.errors?.['dateInvalid']" class="error-message">
+              {{ authorForm.get('birthDate')?.errors?.['dateInvalid'] }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="author-input__btn button" type="submit">Добавить автора</button>
+      <span *ngIf="message" class="error-message">{{message}}</span>
+    </form>
+  </div>
+</div>
+
+<app-table
+  [tableTitle]="tableTitle"
+  [headers]="authorHeaders"
+  [items]="(authors$ | async) ?? []"
+></app-table>

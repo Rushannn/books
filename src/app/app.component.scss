@@ -1,0 +1,25 @@
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  box-shadow: 0px 0px 15px 0px #0000001a;
+}
+
+input,
+select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 16px;
+  width: 100%;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #d32f2f;
+}
