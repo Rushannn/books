@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "surname": "Чуковский",
+    "name": "Корней",
+    "patronymic": "Иванович",
+    "birthDate": "31-03-1882"
+  },
+  {
+    "id": 2,
+    "surname": "Пушкин",
+    "name": "Александр",
+    "patronymic": "Сергеевич",
+    "birthDate": "06-06-1799"
+  },
+  {
+    "id": 3,
+    "surname": "Толстой",
+    "name": "Лев",
+    "patronymic": "Николаевич",
+    "birthDate": "09-09-1828"
+  },
+  {
+    "id": 4,
+    "surname": "Достоевский",
+    "name": "Федор",
+    "patronymic": "Михайлович",
+    "birthDate": "11-11-1821"
+  },
+  {
+    "id": 5,
+    "surname": "Гоголь",
+    "name": "Николай",
+    "patronymic": "Васильевич",
+    "birthDate": "01-04-1809"
+  }
+]
